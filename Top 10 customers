@@ -1,0 +1,21 @@
+Below is a querry showing top 10 customers according to their geographical locations
+
+SELECT A.customer_id, B.first_name, D.city, E.country, 
+SUM(A.amount) 
+FROM payment A 
+INNER JOIN customer B ON A.customer_id = B.customer_id 
+INNER JOIN address C ON B.address_id = C.address_id 
+INNER JOIN city D ON C.city_id = D.city_id 
+INNER JOIN country E ON D.country_id = E.country_id 
+WHERE D.city IN('Aurora', 
+'Tokat', 
+'Atlixco' 
+'Emeishan' 
+'Pontianak', 'Shimoga', 
+'Aparecida_de_Goinia', 
+'Zalantun', 
+'Taguig') 
+GROUP BY A.customer_id, B.first_name, D.city, E.country
+ORDER BY SUM
+DESC
+LIMIT 10 
