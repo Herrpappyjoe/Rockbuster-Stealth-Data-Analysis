@@ -1,0 +1,24 @@
+**Here is an SQL query showing top 10 movies that contributed to revenue gain
+
+SELECT title AS movie_name, rating,
+SUM(amount) AS total_amount_revenue
+FROM payment A
+INNER JOIN rental B ON A.rental_id = B.rental_id
+INNER JOIN inventory C ON B.inventory_id = C.inventory_id
+INNER JOIN film D ON C.film_id = D.film_id
+GROUP BY movie_name, rating
+ORDER BY total_amount_revenue DESC
+LIMIT 10;
+
+/*Here is an SQL query showing Which movies contributed the least to revenue gain*/
+
+SELECT title AS movie_name, rating,
+SUM(amount) AS total_amount_revenue
+FROM payment A
+INNER JOIN rental B ON A.rental_id = B.rental_id
+INNER JOIN inventory C ON B.inventory_id = C.inventory_id
+INNER JOIN film D ON C.film_id = D.film_id
+GROUP BY movie_name, rating
+ORDER BY total_amount_revenue 
+ASC
+LIMIT 10;
