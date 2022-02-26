@@ -1,0 +1,12 @@
+Here is a query for top 10 Genre with highest ranking
+
+SELECT E.name AS movie_genre
+    SUM(amount) AS total_amount_revenue
+FROM payment A 
+INNER JOIN rental B ON A.rental_id=B.rental_id 
+INNER JOIN inventory C ON B.inventory_id = C.inventory_id 
+INNER JOIN film_category D ON C.film_id = D.film_id 
+INNER JOIN category E ON D.category_id = E.category_id 
+GROUP BY movie_genre
+ORDER BY total_amount_revenue
+DESC
